@@ -8,7 +8,7 @@ $(async function () {
 })
 
 async function getAuthUser() {
-    fetch("http://localhost:8080/api/users/user")
+    fetch("/api/users/user")
         .then(response => response.json())
         .then(data => {
             document.querySelector('#userName').textContent = data.email;
@@ -29,7 +29,7 @@ async function getAuthUser() {
 async function getAllUsers() {
     const userTable = $('#tbodyAllUserTable');
     userTable.empty();
-    fetch("http://localhost:8080/api/admin/users")
+    fetch("/api/admin/users")
         .then(res => res.json())
         .then(data => {
             data.forEach(user => {
@@ -56,7 +56,7 @@ async function getAllUsers() {
 
 // CREATE
 async function newUser() {
-    fetch("http://localhost:8080/api/admin/roles")
+    fetch("/api/admin/roles")
         .then(response => response.json())
         .then(roles => {
             roles.forEach(role => {
@@ -89,7 +89,7 @@ async function newUser() {
             })
         }
 
-        fetch("http://localhost:8080/api/admin/users", {
+        fetch("/api/admin/users", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -118,7 +118,7 @@ $('#delete').on('show.bs.modal', ev => {
 })
 
 async function getUser(id) {
-    let response = await fetch("http://localhost:8080/api/admin/users/" + id);
+    let response = await fetch("/api/admin/users/" + id);
     return await response.json();
 }
 
@@ -156,7 +156,7 @@ async function removeUser() {
 
     deleteForm.addEventListener("submit", ev => {
         ev.preventDefault();
-        fetch("http://localhost:8080/api/admin/users/" + id, {
+        fetch("/api/admin/users/" + id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
