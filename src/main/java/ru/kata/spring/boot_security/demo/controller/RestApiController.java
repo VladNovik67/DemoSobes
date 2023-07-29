@@ -34,7 +34,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class RestApiController {
-    //TODO вытащить в абстракт класс?
+
     private final UserService userService;
     private final RoleService roleService;
 
@@ -88,9 +88,8 @@ public class RestApiController {
     }
 
     @PutMapping( "admin/users/{id}")
-    public User updateUser(@RequestBody User user) {
+    public void updateUser(@RequestBody User user) {
         userService.save(user);
-        return user;
     }
 
 

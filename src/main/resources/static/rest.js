@@ -2,6 +2,8 @@ $(async function () {
     await getAuthUser();
     await getAllUsers();
     await newUser();
+    await removeUser();
+    await updateUser();
 
 })
 
