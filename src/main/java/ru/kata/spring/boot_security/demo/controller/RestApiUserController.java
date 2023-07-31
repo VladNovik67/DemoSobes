@@ -4,25 +4,24 @@ package ru.kata.spring.boot_security.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
 
 @RestController
+@Secured({"ROLE_USER","ROLE_ADMIN"})
 @RequestMapping("/api/users")
 public class RestApiUserController {
     private final UserService userService;
-    private final RoleService roleService;
 
     @Autowired
-    public RestApiUserController(UserService userService, RoleService roleService) {
+    public RestApiUserController(UserService userService) {
         this.userService = userService;
-        this.roleService = roleService;
     }
 
     @GetMapping("/user")

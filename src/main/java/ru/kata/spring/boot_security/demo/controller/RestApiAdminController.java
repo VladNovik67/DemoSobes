@@ -3,6 +3,7 @@ package ru.kata.spring.boot_security.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 import java.util.List;
 
 @RestController
+@Secured("ROLE_ADMIN")
 @RequestMapping("/api/admin")
 public class RestApiAdminController {
 
@@ -32,8 +34,6 @@ public class RestApiAdminController {
         this.userService = userService;
         this.roleService = roleService;
     }
-
-
 
 
     @GetMapping("/users")
@@ -71,6 +71,7 @@ public class RestApiAdminController {
     }
 
     @PutMapping( "/users/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateUser(@RequestBody User user) {
         userService.save(user);
     }
