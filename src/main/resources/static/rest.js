@@ -35,7 +35,7 @@ async function getAllUsers() {
             data.forEach(user => {
                 let tableWithUsers = `$(
                         <tr>
-                            <td>${user.id}</td>
+                            https://users.metu.edu.tr/e163109/Term_Paper_CENG_562.pdf<td>${user.id}</td>
                             <td>${user.firstName}</td>
                             <td>${user.lastName}</td>
                             <td>${user.email}</td>
